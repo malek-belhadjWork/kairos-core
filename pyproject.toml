@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kairos-core"
+version = "1.0.0"
+description = "KairosCore — the framework for modular pipeline 'bricks' (engine+config and registry conventions, config validation, discovery, pipeline wiring)."
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml>=6",
+]
+
+[tool.setuptools.packages.find]
+include = ["kairos_core*"]
