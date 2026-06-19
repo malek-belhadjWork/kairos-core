@@ -160,15 +160,40 @@ python tests/run_all.py
 ```
 
 ## 7. README (required)
-Every brick ships a `README.md` so a consumer knows **what it does** and **how its
-config is written** without reading the code. Include:
-- one line: **Kind** (engine/registry), **NAME**, what it does;
-- **Input** and **Output** shapes;
-- a **Config** example (the `<name>:` section) + a table of every parameter with
-  defaults; for a **registry** brick, list each `impl` and its `params`;
-- install line; and any external requirement (e.g. a system binary).
+Every brick ships a `README.md` so a consumer can write its config without reading
+the code. Fill in this template:
 
-(See the existing brick READMEs — `kairos-extract`, `kairos-ocr` — as models.)
+```markdown
+# kairos-<name>
+
+**Kind:** engine|registry · **NAME:** `<name>` · depends on `kairos-core`
+
+<one line: what the brick does>
+
+- **Input:** <shape it receives>
+- **Output:** <shape it returns>
+
+## Install
+\`\`\`bash
+pip install kairos-core kairos-<name>
+\`\`\`
+<note any external requirement, e.g. a system binary>
+
+## Config
+\`\`\`yaml
+# engine brick — the section IS the settings, flat:
+<name>:
+  some_param: <value>
+# registry brick — pick a plugin + its params:
+# <name>: {impl: <plugin>, params: {...}}
+\`\`\`
+
+| key | default | meaning |
+|-----|---------|---------|
+| `some_param` | `...` | ... |
+
+<!-- registry bricks: also a table of each `impl` and its params -->
+```
 
 ## 8. Publish
 ```bash
