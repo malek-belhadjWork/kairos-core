@@ -159,7 +159,18 @@ if __name__ == "__main__":
 python tests/run_all.py
 ```
 
-## 7. Publish
+## 7. README (required)
+Every brick ships a `README.md` so a consumer knows **what it does** and **how its
+config is written** without reading the code. Include:
+- one line: **Kind** (engine/registry), **NAME**, what it does;
+- **Input** and **Output** shapes;
+- a **Config** example (the `<name>:` section) + a table of every parameter with
+  defaults; for a **registry** brick, list each `impl` and its `params`;
+- install line; and any external requirement (e.g. a system binary).
+
+(See the existing brick READMEs — `kairos-extract`, `kairos-ocr` — as models.)
+
+## 8. Publish
 ```bash
 git init -b main && git add -A && git commit -m "kairos-<name> v1.0.0"
 git remote add origin https://github.com/<you>/kairos-<name>.git
@@ -168,7 +179,7 @@ git tag v1.0.0 && git push --tags          # pin-able release
 # later: build + twine upload to the private PyPI registry
 ```
 
-## 8. Use it in a project
+## 9. Use it in a project
 ```bash
 pip install kairos-core kairos-<name>      # (or add to a project's requirements)
 ```
@@ -191,4 +202,5 @@ If your brick calls another brick that is NOT a stage:
 - [ ] `kairos_<name>/` with the right files for its KIND; params in `config_model.py`
 - [ ] `pyproject.toml`: depends on `kairos-core`, entry point `[project.entry-points."kairos.bricks"]`
 - [ ] `tests/test_<name>.py` green via `python tests/run_all.py`
+- [ ] `README.md` documents purpose + every config parameter (and `impl`s if registry)
 - [ ] committed, pushed, tagged; (published to the registry when ready)
